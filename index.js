@@ -1,10 +1,10 @@
 const { default: makeWASocket, useMultiFileAuthState, fetchLatestBaileysVersion, DisconnectReason } = require('@whiskeysockets/baileys');
 const fs = require('fs');
 
-(async () => {
+const startBot = async () => {
     const { state, saveCreds } = await useMultiFileAuthState('auth_info');
     const { version } = await fetchLatestBaileysVersion();
-    let lastMessage = {}; // Menyimpan pesan terakhir agar tidak mengirim ulang
+    let lastMessage = {}; 
 
     const sock = makeWASocket({
         version,
@@ -25,7 +25,7 @@ const fs = require('fs');
             console.log('❌ Disconnected, trying to reconnect...', shouldReconnect);
 
             if (shouldReconnect) {
-                connectToWhatsApp();
+                startBot();  // Restart koneksi
             } else {
                 console.log('🛑 Logout detected, please scan QR code again.');
                 fs.rmSync('auth_info', { recursive: true, force: true });
@@ -129,4 +129,5 @@ const fs = require('fs');
         // Kirim pesan dengan delay
         sendReplyDelayed(sock, sender, reply);
     });
-})();
+};
+startBot();
