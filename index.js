@@ -76,7 +76,6 @@ const startBot = async () => {
                         `- *Design Basic*\n` +
                         `- *Design Pro*\n` +
                         `- *Block Programming*\n` +
-                        `- *C*\n\n` +
                         `📅 *Jadwal Fleksibel* – Bisa menyesuaikan dengan peserta!\n\n` +
                         `Mau mulai belajar? Balas pesan ini dengan format berikut:\n\n` +
                         `🗓 *Hari*: (Pilih hari selain besok)\n` +
@@ -87,18 +86,25 @@ const startBot = async () => {
             case '3':
                 reply = `💰 *Harga & Paket Kursus* 💰\n\n` +
                         `🔹 *Private (1 sesi = 1 jam)*\n` +
-                        `• 8 pertemuan → Rp 800.000\n` +
-                        `• 16 pertemuan → Rp 1.600.000\n` +
-                        `• 24 pertemuan → Rp 2.400.000\n\n` +
-                        `🔹 *Group (5-10 orang, 1 sesi = 1,5 jam)*\n` +
-                        `• 8 pertemuan → Rp 2.000.000 (dibagi jumlah peserta)\n` +
-                        `• 16 pertemuan → Rp 4.000.000\n` +
-                        `• 24 pertemuan → Rp 6.000.000\n\n` +
+                        `• 4 pertemuan atau 1 bulan\n → Rp 300.000\n\n` +
+                        `• 8 pertemuan atau 2 bulan\n → Rp 600.000\n\n` +
+                        `• 16 pertemuan atau 4 bulan\n → Rp 1.200.000\n\n` +
+                        `• 24 pertemuan atau 6 bulan\n → Rp 1.800.000\n\n` +
+                        `🔹 *Group Reguler (10 orang, 1 sesi = 1 jam)*\n` +
+                        `• 4 pertemuan atau 1 bulan\n → Rp 50.000\n\n` +
+                        `• 8 pertemuan atau 2 bulan\n → Rp 100.000\n\n` +
+                        `• 16 pertemuan atau 4 bulan\n → Rp 200.000\n\n` +
+                        `• 24 pertemuan atau 6 bulan\n → Rp 300.000\n\n` +
+                        `🔹 *Group VIP (5 orang, 1 sesi = 1 jam)*\n` +
+                        `• 4 pertemuan atau 1 bulan\n → Rp 100.000\n\n` +
+                        `• 8 pertemuan atau 2 bulan\n → Rp 200.000\n\n` +
+                        `• 16 pertemuan atau 4 bulan\n → Rp 400.000\n\n` +
+                        `• 24 pertemuan atau 6 bulan\n → Rp 600.000\n\n` +
                         `Tertarik? Balas pesan ini dengan format:\n` + 
                         `*PRIV/GROUP PAKET KURSUS*\n` +
                         `Contoh:\n`+
                         `🔹 *Private 8 C++*\n` +
-                        `🔹 *Group 16 Web Design*`;
+                        `🔹 *Group Reguler 16 Web Design*`;
                 break;
             case '4':
                 reply = `📩 *Cara Daftar:*\n\n` +
@@ -106,7 +112,7 @@ const startBot = async () => {
                         `*PRIV/GROUP PAKET KURSUS*\n` +
                         `Contoh:\n`+
                         `🔹 *Private 8 C++*\n` +
-                        `🔹 *Group 16 Web Design*\n\n` +
+                        `🔹 *Group Reguler 16 Web Design*\n\n` +
                         `Ayo upgrade skill-mu sekarang! 🚀🔥`;
                 break;
             case '5':
@@ -115,7 +121,7 @@ const startBot = async () => {
             case 'menu':
                 reply = `🎉 Selamat Datang di Triraya Academy! 🎉\n\n` +
                         `Hai! Saya Triraya Robot 👋 Senang banget bisa ketemu kamu di sini. Yuk, pilih menu di bawah ini:\n\n` +
-                        `📚 1. Kelas Gratis – Cobain kelas gratis sekarang!\n` +
+                        `📚 1. Jadwal Kelas – Temukan jadwal kelas yang cocok sekarang!\n` +
                         `📖 2. Info Kelas – Lihat detail kelas & jadwalnya.\n` +
                         `💰 3. Harga – Cek daftar harga & paket kelas.\n` +
                         `📝 4. Pesan – Mau daftar atau konsultasi? Hubungi kami!\n` +
@@ -123,11 +129,14 @@ const startBot = async () => {
                         `Balas pesan ini dengan 1, 2, 3, 4, atau 5 ya! 📩🚀`;
                 break;
             default:
-                reply = "Maaf, saya tidak mengerti pesanmu. Silakan ketik *menu* untuk melihat daftar pilihan!";
+                reply = "";
         }
 
         // Kirim pesan dengan delay
-        sendReplyDelayed(sock, sender, reply);
+        if (reply) {
+            sendReplyDelayed(sock, sender, reply);
+        }
+        // sendReplyDelayed(sock, sender, reply);
     });
 };
 startBot();
